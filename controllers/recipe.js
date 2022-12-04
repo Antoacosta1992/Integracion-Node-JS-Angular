@@ -5,9 +5,11 @@ const save = async (req, res) => {
 		const recipes = req.body;
 		await Recipe.deleteMany({});
 
-		recipes.forEach(async element => {
-			const recipe = new Recipe(element);
-			await recipe.save();
+		//una receta a la vez
+		//for each le paso una funciion, me va a dar un element que representa una receta
+		recipes.forEach(async element => { 
+			const recipe = new Recipe(element); //convierte
+			await recipe.save(); //guarda
 		});
 
 		res.status(200).json({

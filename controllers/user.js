@@ -6,17 +6,23 @@ const signUp = async (req, res) => {
 	try {
 		const { email, password } = req.body
 		const user = new User({email, password});
+        //convierte
+	
+
+		//antes de guardarlo se incripta
 		const salt = bcryptjs.genSaltSync();
 	    user.password = bcryptjs.hashSync(password, salt);
-		//Generar la data a guardar
+		//se va a guardar el objeto User.
 
 		console.log(user);
-		const token = await generarJWT(user._id);
+		const token = await generarJWT(user._id); 
+		//helpers
 	    user.idToken = token;
-		// Guardar DB
-	
+		//si no le asigno la variable user nunca se va a guardar
+	     //lo guarda
 		await user.save();
 	
+		//podemos personalizar como se retorna
 		res.status(201).json({
 			email: user.email,
 			localId: user.localId,
@@ -45,6 +51,8 @@ const login = async (req, res) => {
 		const token = await generarJWT (user._id);
 		user.idToken = token;
 
+
+		//se lo pasa a angular y responde esto.
 		res.status(200).json({
 			email: user.email,
 			localId: user.localId,

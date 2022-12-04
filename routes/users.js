@@ -10,7 +10,8 @@ const { emailExists, emailNoExists} = require('../helpers/db-validator');
 
 
 const routes = Router();
-
+//puedan realizar peticianes a esas rutas, que se van a exponer desde el servidor de node js
+//para que las aprlicaciones extenar se puedan conectar 
 //SINGUP
 routes.post('/singup',[
     check('email', 'the email is not válid').isEmail(),

@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const generarJWT = async (uid = "") => {
   //Le mandamis el UID para que no tenga mas informacion el JWT
   return new Promise((resolve, reject) => {
+    
     const payload = { uid };
 	
   //Generamos el JWT y se crean 4 phar (payload, secreteorprivatekey que es una llave secreta para firmar el token y esta guandado como variable de entrono, el tercero son las opciones como por ejemplo tiempo de expiracion, el cuarto es el callback, para disparar en caso de exito o error.
